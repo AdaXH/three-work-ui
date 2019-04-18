@@ -2,12 +2,8 @@ import React from 'react';
 import Components from '../src/config/componentConfig'
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
 import setIcon from './config/iconConfig'
-import TW from '../lib/main'
-import { Notification } from '../lib/main'
 import './App.css';
-console.log(TW)
-console.log(Notification)
-Notification.success({ msg: '231312' })
+
 export default (props => {
   window.onload = () => {
     setIcon()
