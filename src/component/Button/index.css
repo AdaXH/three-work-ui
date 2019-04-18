@@ -1,0 +1,98 @@
+.componentButton{
+    min-width: 50px;
+    min-height: 30px;
+    padding: 3px 10px;
+    line-height: 30px;
+    text-align: center;
+    transition: all .3s;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    display: inline-block;
+}
+.defaultButton{
+    color: #515a6e;
+    background-color: #fff;
+    border: 1px solid #dcdee2;
+}
+.defaultButton:hover{
+    background-color: #ffffff;
+    color: #40a9ff;
+}
+.dangerButton{
+    background-color: #ff4d4f;
+    color: #ffffff;
+    border: #ff4d4f 1px solid;
+}
+.dangerButton:hover{
+    background-color: #ffffff;
+    color: #ff4d4f;
+}
+.primaryButton{
+    background-color: #40a9ff;
+    color: #ffffff;
+    border: #40a9ff 1px solid;
+}
+.primaryButton:hover{
+    background-color: #ffffff;
+    color: #40a9ff;
+}
+.successButton{
+    color: #fff;
+    background-color: #19be6b;
+    border: #19be6b 1px solid;
+}
+.successButton:hover{
+    color: #19be6b;
+    background-color: #fff;
+}
+.warningButton{
+    color: #fff;
+    background-color: #f90;
+    border: 1px solid #f90;
+}
+.warningButton:hover{
+    color: #f90;
+    background-color: #fff;
+}
+.disableButton{
+    color: rgba(0,0,0,0.25);
+    background-color: #f5f5f5;
+    border-color: #d9d9d9;
+    cursor: not-allowed;
+    border: 1px solid #d9d9d9;
+}
+.loadingButton{
+    color: #fff;
+    background-color: #2d8cf0;
+    border: 1px solid #2d8cf0;
+    opacity: .7;
+}
+.loadingButton span{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 50%;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-top-color: #ffffff;
+    animation: loading 1s linear infinite;
+    margin-right: 8px;
+}
+.loadingButton b{
+    font-weight: normal;
+}
+@keyframes loading {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.TW_UI_buttonTest{
+    display: block;
+}

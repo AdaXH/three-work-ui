@@ -1,0 +1,74 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.componentContainer{
+  margin-top: 20px;
+  display: flex;
+}
+.rightComponent{
+  margin-left: 20px;
+  flex:1;
+}
+.componentList{
+  width: 240px;
+  padding-left: 40px;
+  border-right: 1px solid #e8e8e8
+}
+.componentList a {
+    display: block;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-right: 3px solid transparent;
+    transition: all .2s;
+}
+a:link{
+  color: #40a9ff;
+}
+a:visited{
+  color: #40a9ff;
+}
+a:hover{
+  color: #ff4d4f;
+}
+a:active{
+  color: #40a9ff;
+}
+a.active{
+  color: #40a9ff;
+  background: #ff4d4f8f;
+  color:white;
+  border-right: 3px solid #ff4d4f;
+}
+.__componentDetail{
+  flex: 1;
+}
