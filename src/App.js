@@ -1,6 +1,6 @@
 import React from 'react';
 import Components from '../src/config/componentConfig'
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
+import { BrowserRouter as Router, Route, NavLink, Redirect, Switch } from 'react-router-dom'
 import setIcon from './config/iconConfig'
 import './App.css';
 
@@ -19,12 +19,15 @@ export default (props => {
             ))
           }
         </div>
+        <Switch>
         {
           Components.config.map(item => (
             <Route key={item.name} className='__componentDetail' path={item.path} component={() =>
               <div className='rightComponent'>{item.component()}</div>} />
           ))
         }
+          <Redirect to='/button' />
+        </Switch>
         </span>
       </Router>
     </div>

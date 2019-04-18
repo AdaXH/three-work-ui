@@ -5,7 +5,7 @@ import './index.css'
 const Notification = {}
 
 const setInstance = () => {
-    ['success', 'fail', 'warning'].forEach(_type_ => {
+    ['success', 'fail', 'warning', 'error'].forEach(_type_ => {
         const key = _type_
         Notification[_type_] = args => Component(args, key)
     })
@@ -17,14 +17,14 @@ const Component = (props, _type_) => {
 
     const iconType = _type_ => {
         let result = 'icon-ico_commodity_defaul'
-        if (_type_ === 'fail') result = 'icon-cancel'
+        if (_type_ === 'fail' || _type_ === 'error') result = 'icon-cancel'
         if (_type_ === 'warning') result = 'icon-wenti'
         return result
     }
 
     const iconColor = _type_ => {
         let color = '#52c41a'
-        if (_type_ === 'fail') color = '#f5222d'
+        if (_type_ === 'fail' || _type_ === 'error') color = '#f5222d'
         if (_type_ === 'warning') color = '#f37e1a'
         return color
     }
@@ -33,7 +33,7 @@ const Component = (props, _type_) => {
         if (position === 'right' || typeof position !== 'string') {
             return {
                 toast: show ? 'TW_UI_toastRightShow' : 'TW_UI_toastRightHide',
-                toastContainer: 'TW_UI_toastRight'                
+                toastContainer: 'TW_UI_toastRight'
             }
         }
         if (position === 'top') {
