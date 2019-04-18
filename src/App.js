@@ -1,13 +1,9 @@
 import React from 'react';
 import Components from '../src/config/componentConfig'
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
+import { BrowserRouter as Router, Route, NavLink, Redirect, Switch } from 'react-router-dom'
 import setIcon from './config/iconConfig'
-import TW from '../lib/main'
-import { Notification } from '../lib/main'
 import './App.css';
-console.log(TW)
-console.log(Notification)
-Notification.success({ msg: '231312' })
+
 export default (props => {
   window.onload = () => {
     setIcon()
@@ -23,12 +19,15 @@ export default (props => {
             ))
           }
         </div>
+        <Switch>
         {
           Components.config.map(item => (
             <Route key={item.name} className='__componentDetail' path={item.path} component={() =>
               <div className='rightComponent'>{item.component()}</div>} />
           ))
         }
+          <Redirect to='/button' />
+        </Switch>
         </span>
       </Router>
     </div>

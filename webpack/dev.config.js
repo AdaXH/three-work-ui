@@ -1,5 +1,5 @@
 const path = require('path');
-const htmlWebpackPlugin = require('html-webpack-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin'); 
 
 module.exports = {
     mode: 'development',
@@ -22,7 +22,7 @@ module.exports = {
         ]
     },
     devServer: {
-        contentBase: './dist'
+        contentBase: './lib'
     },
     plugins: [
         new htmlWebpackPlugin({
