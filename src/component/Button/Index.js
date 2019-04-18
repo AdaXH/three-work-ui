@@ -7,7 +7,26 @@ import CaseContainer from '../Case/Index';
 import Test from './Test';
 
 const component = () => {
-    const detail = `<Button onClick={() => { Notification.success({ msg: '成功喽' }) }} ></Button>`
+    const intrudction = {
+        detail: `<Button onClick={() => { Notification.success({ msg: '成功喽' }) }} ></Button>`,
+        apis: {
+            title: 'Button',
+            values: [
+                {
+                    property: 'type',
+                    summary: '按钮的类型，可选值：default, danger, warning, primary, error',
+                    _type_: 'String',
+                    defaultValue: 'default'
+                },
+                {
+                    property: 'disabled',
+                    summary: '按钮的禁用状态，可选值：true | false',
+                    _type_: 'Boolean',
+                    defaultValue: 'false'
+                }
+            ]
+        }
+    }
     const CaseList = [
         () => <Button onClick={() => { Notification.success({ msg: '您点击了Default按钮' }) }} >Default</Button>,
         () => <Button type="primary" onClick={() => { Notification.success({ msg: '您点击了Primary按钮' }) }}>Primary</Button>,
@@ -24,7 +43,7 @@ const component = () => {
         <div className="container">
             <CaseContainer CaseList={CaseList} />
             <CaseContainer CaseList={test} />
-            <Intrudction detail={detail} />
+            <Intrudction intrudction={intrudction} />
         </div>
     );
 }

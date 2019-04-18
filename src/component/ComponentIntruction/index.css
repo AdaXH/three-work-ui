@@ -1,7 +1,60 @@
-.componentDetail{
+.TW_UI_componentDetail{
     min-width: 300px;
-    height: 500px;
+    /* height: 500px; */
     white-space: pre-wrap;
     padding: 20px;
     line-height: 1.5;
+}
+.TW_UI_componentApi{
+    padding: 20px;
+    min-width: 1000px;
+}
+.TW_UI_componentApi .TW_UI_title {
+    color: #0d1a26;
+    font-size: 24px;
+    line-height: 32px;
+}
+.TW_UI_apiContainer{
+}
+.TW_UI_apiHeaher, .TW_UI_apiItem{
+    height: 50px;
+    background: #e6e6e6;
+    color: #0d1a26;
+    font-size: 14px;
+    display: flex;
+    padding: 0 20px;
+    line-height: 50px;
+    text-align: left;
+}
+.TW_UI_apiItem{
+    background: transparent;
+    border-bottom: 1px solid #eee;
+}
+.TW_UI_apiHeaher div{
+    flex: 1;
+}
+.TW_UI_apiHeaher div:nth-of-type(2) {
+    width: 400px;
+    flex: none;
+}
+.TW_UI_apiHeaher div:nth-of-type(1) {
+    width: 250px;
+    flex: none;
+}
+.TW_UI_apiItem div {
+    flex: 1;
+}
+.TW_UI_apiItem div:nth-of-type(2) {
+    width: 400px;
+    flex: none;
+}
+.TW_UI_apiItem div:nth-of-type(1) {
+    width: 250px;
+    flex: none;
+}
+div.TW_UI_apiType{
+    color: #ff4d4f;
+}
+div.TW_UI_apiDefaultValue{
+    color: #0a86ec;
 }
