@@ -15,7 +15,7 @@ export default (props => {
         <div className='componentList'>
           {
             Components.config.map(item => (
-                <NavLink to={item.path} key={item.name}>{item.name}</NavLink>
+                <NavLink to={item.path} key={item.name}>{item.name}<span className='TW_UI_author'>@ {item.author}</span></NavLink>
             ))
           }
         </div>
