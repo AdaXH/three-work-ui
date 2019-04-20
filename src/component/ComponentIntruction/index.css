@@ -17,7 +17,7 @@
 .TW_UI_apiContainer{
 }
 .TW_UI_apiHeaher, .TW_UI_apiItem{
-    height: 50px;
+    height: auto;
     background: #e6e6e6;
     color: #0d1a26;
     font-size: 14px;
@@ -34,7 +34,7 @@
     flex: 1;
 }
 .TW_UI_apiHeaher div:nth-of-type(2) {
-    width: 400px;
+    width: 500px;
     flex: none;
 }
 .TW_UI_apiHeaher div:nth-of-type(1) {
@@ -45,7 +45,7 @@
     flex: 1;
 }
 .TW_UI_apiItem div:nth-of-type(2) {
-    width: 400px;
+    width: 500px;
     flex: none;
 }
 .TW_UI_apiItem div:nth-of-type(1) {
@@ -54,7 +54,9 @@
 }
 div.TW_UI_apiType{
     color: #ff4d4f;
+    width: 300px;
 }
 div.TW_UI_apiDefaultValue{
     color: #0a86ec;
+    width: 300px;
 }

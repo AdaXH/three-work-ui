@@ -8,13 +8,13 @@ import Test from './Test';
 
 const component = () => {
     const intrudction = {
-        detail: `<Button onClick={() => { Notification.success({ msg: '成功喽' }) }} ></Button>`,
+        detail: ` import { Button } from 'three-work-ui'`,
         apis: {
             title: 'Button',
             values: [
                 {
                     property: 'type',
-                    summary: '按钮的类型，可选值：default, danger, warning, primary, error',
+                    summary: '按钮的类型，可选值：default, danger, warning, primary, success',
                     _type_: 'String',
                     defaultValue: 'default'
                 },
@@ -33,11 +33,11 @@ const component = () => {
         () => <Button type="success" onClick={() => { Notification.success({ msg: '您点击了Success按钮' }) }}>Success</Button>,
         () => <Button type="warning" onClick={() => { Notification.warning({ msg: '您点击了Warning按钮' }) }}>Warning</Button>,
         () => <Button type="danger" onClick={() => { Notification.fail({ msg: '您点击了Error按钮' }) }}>Error</Button>,
-        () => <Button loading>111</Button>,
+        () => <Button loading></Button>,
         () => <Button disabled>Disabled</Button>,
     ]
     const test = [
-        () => <Test></Test>
+        () => <Test />
     ]
     return (
         <div className="container">
@@ -51,8 +51,8 @@ const component = () => {
 const ButtonComponent = {
     path: '/button',
     component,
-    name: '按钮组件',
-    author: 'xy'
+    name: '按钮 - Button',
+    author: 'Zxy'
 }
 
 export default ButtonComponent;

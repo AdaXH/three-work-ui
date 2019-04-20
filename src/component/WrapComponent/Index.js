@@ -7,5 +7,6 @@ export const mountComponent = component => {
         __wrapComponent__.id = '__wrapComponent__'
         document.getElementsByTagName('body')[0].appendChild(__wrapComponent__)
     }
-    ReactDOM.render(component(), document.getElementById('__wrapComponent__'))
+    ReactDOM.render(typeof (component) === 'function' ? component() : component, document.getElementById('__wrapComponent__'))
+
 }
