@@ -23,6 +23,7 @@
     font-size: 14px;
     display: flex;
     padding: 0 20px;
+    position: relative;
     line-height: 50px;
     text-align: left;
 }
@@ -30,8 +31,28 @@
     background: transparent;
     border-bottom: 1px solid #eee;
 }
+.TW_UI_apiContainer_ {
+    width: 100%;
+    min-height: 50px;
+    padding: 10px;
+}
+.TW_UI_apiContainer_ span {
+    position: absolute;
+    display: block;
+    top: 50%;
+    white-space: pre-wrap;
+    transform: translateY(-50%); 
+    width:21%;
+}
+.TW_UI_apiContainer_:nth-of-type(2) span {
+    width: 500px;
+}
+.TW_UI_apiContainer_:nth-of-type(1) span {
+    width: 250px;
+}
 .TW_UI_apiHeaher div{
     flex: 1;
+    padding: 10px;
 }
 .TW_UI_apiHeaher div:nth-of-type(2) {
     width: 500px;

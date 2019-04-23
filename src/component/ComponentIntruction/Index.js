@@ -20,10 +20,18 @@ export default (({ intrudction: { detail, apis } }) => (
                     {
                         apis.values.map(item => (
                             <div className='TW_UI_apiItem' key={item.property}>
-                                <div>{item.property}</div>
-                                <div>{item.summary}</div>
-                                <div className='TW_UI_apiType'>{item._type_}</div>
-                                <div className='TW_UI_apiDefaultValue'>{item.defaultValue}</div>
+                                <div className='TW_UI_apiContainer_'>
+                                    <span>{item.property}</span>
+                                </div>
+                                <div className='TW_UI_apiContainer_ '>
+                                    <span>{item.summary}</span>
+                                </div>
+                                <div className='TW_UI_apiType TW_UI_apiContainer_'>
+                                    <span>{item._type_}</span>
+                                </div>
+                                <div className='TW_UI_apiDefaultValue TW_UI_apiContainer_'>
+                                    <span>{item.defaultValue}</span>
+                                </div>
                             </div>
                         ))
                     }
