@@ -1,7 +1,12 @@
-开发：
-    npm run dev
+安装：
+```ruby  
+   $ npm i three-work-ui --save
+```
 
-发布：
-    1. npm run build
-    2. 更新package.json的version
-    3. npm publish
+```ruby  
+   $ yarn addthree-work-ui --save
+```
+```ruby  
+  import { Button, Notification } from 'three-work-ui
+  ...
+```
