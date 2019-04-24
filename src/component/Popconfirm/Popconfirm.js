@@ -1,5 +1,6 @@
 import React from 'react';
 import { mountComponent } from '../WrapComponent/Index'
+import './index.css'
 
 const Popconfirm = props => {
     return (

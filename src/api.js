@@ -6,7 +6,6 @@ import Popconfirm from './component/Popconfirm/Popconfirm';
 import setIcon from './config/iconConfig'
 
 setIcon() // init icon
-
 export {
     Notification,
     Button,
