@@ -64,7 +64,7 @@ const component = () => {
                 title='Are you sure to delete ?'
                 >
                 <a>delete</a>
-            </Popconfirm>
+            </Popconfirm> 
             </div>,
         () => <div style={{ marginTop: '100px' }}>
             <Popconfirm
