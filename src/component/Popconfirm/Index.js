@@ -1,10 +1,10 @@
 import React from 'react';
-import './index.css';
 import Intrudction from '../ComponentIntruction/Index'
 import CaseContainer from '../Case/Index';
 import Popconfirm from './Popconfirm';
 import Notification from '../Notification/Notification'
-import Button from '../Button/Button'
+import './index.css';
+
 
 const component = () => {
 
