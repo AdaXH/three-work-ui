@@ -53,7 +53,7 @@ const Component = (props, _type_) => {
             }
         }
     }
-    mountComponent(() => <__Component__ />)
+    mountComponent(() => <__Component__ />, 'modal')
 }
 const Modal = {}
 

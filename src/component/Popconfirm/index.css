@@ -1,0 +1,62 @@
+a {
+    color: #40a9ff;
+    cursor: pointer;
+}
+.TW_UI_popconfirmContainer{
+    position: fixed;
+    /* width: 100px; */
+    height: 80px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+    background: white;
+    transform-style: preserve-3d;
+    transform: scale3d(0.6, 0.6, 0.6);
+    opacity: 0;
+    transition: all .3s;
+}
+.TW_UI_popConfirmChildren {
+    /* position: relative; */
+}
+._TW_UI_popconfirmContext {
+    padding: 10px 20px;
+    font-size: 13px;
+    line-height: 60px;
+    color: rgba(0, 0, 0, 0.7);
+}
+.TW_UI_popconfirmMask {
+    position: fixed;
+    width:100%;
+    height: 100%;
+    top:0;left:0;
+    z-index: 1;
+    /* pointer-events: none; */
+}
+.TW_UI_popconfirmIcon {
+    margin-right: 10px;
+    color: #ff4d4f;
+}
+.TW_UI_popconfirmFooter {
+    position: absolute;
+    bottom: 5px;
+    right:5px;
+}
+.TW_UI_popconfirmFooter span {
+    font-size: 13px;
+    cursor: pointer;
+    margin: 0 10px;
+}
+.TW_UI_popconfirmFooter span:nth-of-type(1) {
+    color: #ff4d4f;
+}
+.TW_UI_popconfirmFooter span:nth-of-type(2) {
+    color: #40a9ff;
+}
+div.TW_UI_popconfirmShow {
+    transform: scale3d(1,1,1);
+    opacity: 1;
+}
+div.TW_UI_popconfirmHide {
+    transform: scale3d(0.6, 0.6, 0.6);
+    opacity: 0;
+}
