@@ -9,7 +9,7 @@ const component = () => {
     const openModal = () => {
         Modal.show({
             title: 'Test Modal',
-            width: '1000',
+            width: '500',
             content: <div>Test of the Modal Content</div>,
             footer: null
         })
@@ -34,8 +34,13 @@ const component = () => {
             ]
         }
     }
+    const ModalShow = Modal.show;
     const CaseList = [
-        () => <Button type="primary" onClick={openModal}>Open Modal</Button>
+        () => <div style={{ marginTop: "50px" }}>
+            <ModalShow>
+                <Button type="primary" onClick={openModal}>Open Modal</Button>
+            </ModalShow>
+        </div>
     ]
     return (
         <div className="container" >
