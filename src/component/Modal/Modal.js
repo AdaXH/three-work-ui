@@ -3,19 +3,16 @@ import './index.css'
 import Button from '../Button/Button';
 import { mountComponent } from '../WrapComponent/Index';
 
-const Component = (e, props, _type_) => {
-    const left = e.clientX
-    const top = e.clientY
+const Component = (props, _type_) => {
     const basicStyle = {
-        left: left + 'px',
-        top: top + 'px'
+        top: "300px",
+        transform: "translateX(-50%)"
     }
     const showStyles = {
         transform: "scale3d(1,1,1)",
         opacity: "1",
-        top: "20%",
-        left: "50%",
-        transform: "translateX(-50%)",
+        top: "100px",
+        transform: "translateX(-50%)"
     }
     class __Component__ extends React.PureComponent {
         state = {
@@ -92,13 +89,7 @@ const Modal = {}
 const setInstance = () => {
     ['show', 'hide'].forEach(_type_ => {
         const key = _type_
-        Modal[_type_] = props => {
-            return (
-                <div onClick={(e) => Component(e, props, key)}>
-                    {props.children || ''}
-                </div>
-            )
-        }
+        Modal[_type_] = props => Component(props, key)
     })
 }
 
