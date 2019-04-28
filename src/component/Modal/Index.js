@@ -9,7 +9,7 @@ const component = () => {
     const openModal = () => {
         Modal.show({
             title: 'Test Modal',
-            width: '1000',
+            width: '500',
             content: <div>Test of the Modal Content</div>,
             footer: null
         })

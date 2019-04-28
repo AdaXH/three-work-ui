@@ -4,12 +4,39 @@ import Button from '../Button/Button';
 import { mountComponent } from '../WrapComponent/Index';
 
 const Component = (props, _type_) => {
+    const basicStyle = {
+        top: "300px",
+        transform: "translateX(-50%)"
+    }
+    const showStyles = {
+        transform: "scale3d(1,1,1)",
+        opacity: "1",
+        top: "100px",
+        transform: "translateX(-50%)"
+    }
     class __Component__ extends React.PureComponent {
         state = {
-            visible: false
+            visible: false,
+            show: false
         }
         componentDidMount() {
-            this.setState({ visible: _type_ === 'show' ? true : (_type_ === 'hide') ? false : false })
+            this.setState({
+                visible: _type_ === 'show' ? true : (_type_ === 'hide') ? false : false,
+                show: false
+            }, () => {
+                setTimeout(() => {
+                    this.setState({ show: true })
+                }, 0)
+            })
+        }
+        close = () => {
+            this.setState({
+                show: false,
+            }, () => {
+                setTimeout(() => {
+                    this.setState({ visible: false })
+                }, 300)
+            })
         }
         render() {
             const extendsProps = {
@@ -19,16 +46,18 @@ const Component = (props, _type_) => {
                 ...props
             }
             const { title, width, content, footer } = extendsProps;
-            const { visible } = this.state;
+            const { visible, show } = this.state;
+            const style = show ? showStyles : basicStyle;
             if (visible) {
                 return (
                     <div className="TW_UI_modalContainer">
-                        <div className="TW_UI_modalDetail" style={{ width: isNaN(width) ? width : width + 'px' }}>
+                        <div className="TW_UI_modalContainer_float" onClick={this.close}></div>
+                        <div className={"TW_UI_modalDetail"} style={{ width: isNaN(width) ? width : width + 'px', ...style }}>
                             <div className="TW_UI_modalTitle">
-                                {title}
+                                <b>{title}</b>
                                 <span
                                     className="status iconfont icon-quxiao"
-                                    onClick={() => this.setState({ visible: false })}
+                                    onClick={this.close}
                                 >
                                 </span>
                             </div>
@@ -41,7 +70,7 @@ const Component = (props, _type_) => {
                                         {footer}
                                     </div> :
                                     <div className="TW_UI_modalFooter">
-                                        <Button onClick={() => this.setState({ visible: false })}>取消</Button>
+                                        <Button onClick={this.close}>取消</Button>
                                         <Button type='primary'>确定</Button>
                                     </div>
                             }
@@ -60,7 +89,7 @@ const Modal = {}
 const setInstance = () => {
     ['show', 'hide'].forEach(_type_ => {
         const key = _type_
-        Modal[_type_] = args => Component(args, key)
+        Modal[_type_] = props => Component(props, key)
     })
 }
 
