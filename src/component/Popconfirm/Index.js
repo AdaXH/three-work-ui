@@ -61,7 +61,7 @@ const component = () => {
                 onConfirm={() => Notification.success({ msg: 'delete something' })}
                 title='Are you sure to delete ?'
             >
-                <a>delete</a>
+                <a href="void 0">delete</a>
             </Popconfirm>
         </div>,
         () => <div style={{ marginTop: '100px' }}>

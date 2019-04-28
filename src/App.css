@@ -44,6 +44,9 @@ a.active{
   color:white;
   border-right: 3px solid #ff4d4f;
 }
+a{
+  text-decoration: none;
+}
 .__componentDetail{
   flex: 1;
 }
