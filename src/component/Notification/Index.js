@@ -5,7 +5,7 @@ import Intrudction from '../ComponentIntruction/Index'
 import Button from '../Button/Button'
 
 const component = () => {
-    const onSuccess = (position) => {
+    const onSuccess = (position = 'right') => {
         Notification.success({ msg: 'success ', position })
     }
     const onFail = () => {
@@ -38,16 +38,16 @@ const component = () => {
                     defaultValue: '必选'
                 },
                 {
-                    property: 'api({ msg, position, duration })',
-                    summary: 'msg: 通知消息，position: 通知位置，duration: 通知时长',
+                    property: 'api({ msg, position, duration, maxCount })',
+                    summary: '通知消息，通知位置，通知时长，最大通知数',
                     _type_: 'String,String,Number',
-                    defaultValue: 'success, right, 3'
+                    defaultValue: 'success, right, 3, 4'
                 }
             ]
         }
     }
     const CaseList = [
-        () => <Button onClick={onSuccess}>成功类通知</Button>,
+        () => <Button onClick={() => onSuccess()}>成功类通知</Button>,
         () => <Button onClick={onWarning} type="warning">警告类通知</Button>,
         () => <Button type="danger" onClick={onFail}>错误类通知</Button>,
         () => <Button onClick={() => onSuccess('top')}>top</Button>,

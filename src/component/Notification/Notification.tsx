@@ -13,13 +13,13 @@ export interface NotificationState {
     show?: boolean,
     _type_?: string,
     timer?: any,
-    top?: number
+    top?: number 
+    count?: number
 }
 
 export interface NotificationInstance {
     [key: string]: any
 }
-
 
 const Notification: NotificationInstance = {}
 
@@ -78,7 +78,8 @@ const Component = (props: NotificationProps, _type_: string) => {
         static defaultProps = {
             msg: '这是一个通知',
             duration: 3.5,
-            position: 'right'
+            position: 'right',
+            maxCount: 4
         }
 
         state: NotificationState = {
@@ -86,19 +87,38 @@ const Component = (props: NotificationProps, _type_: string) => {
             visible: true,
             timer: () => void 0,
             _type_,
-            top: 0
+            top: 0,
+            count: 0
         }
 
         container: HTMLElement | null | undefined
 
         componentDidMount() {
             clearTimeout(this.state.timer)
-            const notificationCount = document.querySelectorAll('.toastContainer').length || 1
-            const { duration } = { ...__Component__.defaultProps, ...props }
+            const { duration, position, maxCount } = { ...__Component__.defaultProps, ...props }
+            const notifications = document.querySelectorAll('.toastContainer')
+            let notificationCount = 0
+            notifications.forEach(item => {
+                if (item.getAttribute('data-position') === position) ++notificationCount
+            })
+            const prevePosition = notifications[notifications.length - 2] && notifications[notifications.length - 2].getAttribute('data-position')
             this.setState({
-                top: (notificationCount - 1) * 80,
+                top: (!!prevePosition && position === prevePosition) ? (notificationCount - 1) : 0,
+                count: notifications.length,
                 timer: setTimeout(() => this.setState({ show: false }, () => setTimeout(() => this.setState({ visible: false }, () => unMountContainer(this.container)), 1000)), Number(duration) * 1000),
             })
+        }
+
+        setTop = () => {
+            const { position } = { ...__Component__.defaultProps, ...props }
+            const notifications = Array.from(document.getElementsByClassName('toastContainer'))
+            let notificationCount = 0
+            notifications.forEach(item => {
+                if (item.children && item.children.length !== 0 && item.getAttribute('data-position') === position) ++notificationCount
+            })
+            console.log(notificationCount)
+            const prevePosition = notifications[notifications.length - 1] && notifications[notifications.length - 1].getAttribute('data-position')
+            return (!!prevePosition && position === prevePosition) ? (notificationCount - 1) * 80 : 0
         }
 
         componentWillUnmount() {
@@ -108,16 +128,17 @@ const Component = (props: NotificationProps, _type_: string) => {
 
         render() {
             const extendsProps = {
+                ...__Component__.defaultProps,
                 msg: typeof props === 'string' ? props : 'notification !!!',
                 position: 'right',
                 ...props,
             }
-            const { show = true, visible, _type_ = 'success', top } = this.state
-            const { msg, position } = extendsProps
+            const { show = true, visible, _type_ = 'success', top = 0, count = 0 } = this.state
+            const { msg, position, maxCount = 4 } = extendsProps
             return (
                 <div ref={container => this.container = container}>
                     {
-                        visible && <div style={{transform: `translateY(${top}px)`}} className={'toastContainer ' + positionStyle(position, show).toastContainer}>
+                        count <= maxCount && visible && <div data-position={position} style={{ transform: `translateY(${top && top * 80}px)` }} className={'toastContainer ' + positionStyle(position, show).toastContainer}>
                             <div className={'toast ' + positionStyle(position, show).toast}>
                                 <i style={{ color: iconColor(_type_) }} className={'status iconfont ' + iconType(_type_)}></i>
                                 <span>{msg}</span>
