@@ -1,21 +1,21 @@
 import React from 'react'
-import Toast from './Notification'
+import Notification from './Notification'
 import CaseContainer from '../Case/Index';
 import Intrudction from '../ComponentIntruction/Index'
 import Button from '../Button/Button'
 
 const component = () => {
     const onSuccess = (position) => {
-        Toast.success({ msg: 'success ', position })
+        Notification.success({ msg: 'success ', position })
     }
     const onFail = () => {
-        Toast.fail({
+        Notification.fail({
             msg: '错误提示!!',
             duration: 1
         })
     }
     const onWarning = () => {
-        Toast.warning({
+        Notification.warning({
             msg: '警告!'
         })
     }
@@ -23,6 +23,7 @@ const component = () => {
         detail: `
         import { Notification } from 'three-work-ui'
         Notification.success({ msg: 'success !!!' })
+        Notification.success('success !!!')
         Notification.fail({ 
             msg: 'fail !!!',
             duration: 1

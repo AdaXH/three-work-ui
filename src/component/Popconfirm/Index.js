@@ -9,7 +9,6 @@ const component = () => {
 
     const intrudction = {
         detail: `           import { Popconfirm } from 'three-work-ui'
-
             ReactDOM.render(
                 <Popconfirm 
                     title="Are you sure to delete ?" 
@@ -57,14 +56,14 @@ const component = () => {
         }
     }
     const CaseList = [
-        () => <div style={{ marginTop: '100px'}}>
-            <Popconfirm 
+        () => <div style={{ marginTop: '100px' }}>
+            <Popconfirm
                 onConfirm={() => Notification.success({ msg: 'delete something' })}
                 title='Are you sure to delete ?'
-                >
+            >
                 <a>delete</a>
-            </Popconfirm> 
-            </div>,
+            </Popconfirm>
+        </div>,
         () => <div style={{ marginTop: '100px' }}>
             <Popconfirm
                 onConfirm={() => Notification.success({ msg: 'delete something' })}

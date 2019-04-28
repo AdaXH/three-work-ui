@@ -1,7 +1,7 @@
-import Notification from './component/Notification/Notification';
+import Notification from './component/Notification/Notification.tsx';
 import Button from './component/Button/Button';
 import Modal from './component/Modal/Modal';
-import Popconfirm from './component/Popconfirm/Popconfirm';
+import Popconfirm from './component/Popconfirm/Popconfirm.tsx';
 
 import setIcon from './config/iconConfig'
 

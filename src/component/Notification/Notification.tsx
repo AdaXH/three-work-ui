@@ -2,34 +2,52 @@ import React from 'react'
 import { mountComponent } from '../WrapComponent/Index'
 import './index.css'
 
-const Notification = {}
+export interface NotificationProps {
+    duration?: number | null,
+    msg?: React.ReactNode,
+    position?: string
+}
+
+export interface NotificationState {
+    visible?: boolean,
+    show?: boolean,
+    _type_?: string,
+    timer?: any
+}
+
+export interface NotificationInstance {
+    [key: string]: any
+}
+
+
+const Notification: NotificationInstance = { }
 
 const setInstance = () => {
     ['success', 'fail', 'warning', 'error'].forEach(_type_ => {
         const key = _type_
-        Notification[_type_] = args => Component(args, key)
+        Notification[_type_] = (args: any) => Component(args, key)
     })
 }
 
 setInstance()
 
-const Component = (props, _type_) => {
+const Component = (props: NotificationProps, _type_: string) => {
 
-    const iconType = _type_ => {
+    const iconType = (_type_: string) => {
         let result = 'icon-ico_commodity_defaul'
         if (_type_ === 'fail' || _type_ === 'error') result = 'icon-cancel'
         if (_type_ === 'warning') result = 'icon-wenti'
         return result
     }
 
-    const iconColor = _type_ => {
+    const iconColor = (_type_: string) => {
         let color = '#52c41a'
         if (_type_ === 'fail' || _type_ === 'error') color = '#f5222d'
         if (_type_ === 'warning') color = '#f37e1a'
         return color
     }
 
-    const positionStyle = (position, show) => {
+    const positionStyle = (position: string, show: boolean) => {
         if (position === 'right' || typeof position !== 'string') {
             return {
                 toast: show ? 'TW_UI_toastRightShow' : 'TW_UI_toastRightHide',
@@ -48,21 +66,32 @@ const Component = (props, _type_) => {
                 toastContainer: 'TW_UI_toastLeft'
             }
         }
+        return {
+            toast: show ? 'TW_UI_toastRightShow' : 'TW_UI_toastRightHide',
+            toastContainer: 'TW_UI_toastRight'
+        }
     }
 
-    class __Component__ extends React.PureComponent {
-        state = {
+    class __Component__ extends React.Component<NotificationState> {
+
+        static defaultProps = {
+            msg: '这是一个通知',
+            duration: 3.5,
+            position: 'right'
+        }
+
+        state: NotificationState = {
             show: true,
             visible: true,
-            timer: undefined,
+            timer: () => void 0,
             _type_
         }
 
         componentDidMount() {
             clearTimeout(this.state.timer)
-            const { duration } = { duration: 3.5, ...props }
+            const { duration } = { ...__Component__.defaultProps, ...props }
             this.setState({
-                timer: setTimeout(() => this.setState({ show: false }, () => setTimeout(() => this.setState({ visible: false }), 1000)), parseInt(duration) * 1000)
+                timer: setTimeout(() => this.setState({ show: false }, () => setTimeout(() => this.setState({ visible: false }), 1000)), Number(duration) * 1000)
             })
         }
 
@@ -73,11 +102,11 @@ const Component = (props, _type_) => {
 
         render() {
             const extendsProps = {
-                msg: 'notification !!!',
+                msg: typeof props === 'string' ? props : 'notification !!!',
                 position: 'right',
                 ...props,
             }
-            const { show, visible, _type_} = this.state
+            const { show = true, visible, _type_ = 'success'} = this.state
             const { msg, position } = extendsProps
             return (
                 <div>
