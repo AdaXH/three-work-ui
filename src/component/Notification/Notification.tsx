@@ -1,5 +1,5 @@
 import React from 'react'
-import { mountComponent } from '../WrapComponent/Index'
+import { mountComponent, unMountContainer } from '../WrapComponent/Index'
 import './index.css'
 
 export interface NotificationProps {
@@ -12,7 +12,8 @@ export interface NotificationState {
     visible?: boolean,
     show?: boolean,
     _type_?: string,
-    timer?: any
+    timer?: any,
+    top?: number
 }
 
 export interface NotificationInstance {
@@ -20,7 +21,7 @@ export interface NotificationInstance {
 }
 
 
-const Notification: NotificationInstance = { }
+const Notification: NotificationInstance = {}
 
 const setInstance = () => {
     ['success', 'fail', 'warning', 'error'].forEach(_type_ => {
@@ -56,7 +57,7 @@ const Component = (props: NotificationProps, _type_: string) => {
         }
         if (position === 'top') {
             return {
-                toast:  show ? 'TW_UI_toastTopShow' : 'TW_UI_toastTopHide', 
+                toast: show ? 'TW_UI_toastTopShow' : 'TW_UI_toastTopHide',
                 toastContainer: 'TW_UI_toastCenter'
             }
         }
@@ -84,14 +85,19 @@ const Component = (props: NotificationProps, _type_: string) => {
             show: true,
             visible: true,
             timer: () => void 0,
-            _type_
+            _type_,
+            top: 0
         }
+
+        container: HTMLElement | null | undefined
 
         componentDidMount() {
             clearTimeout(this.state.timer)
+            const notificationCount = document.querySelectorAll('.toastContainer').length || 1
             const { duration } = { ...__Component__.defaultProps, ...props }
             this.setState({
-                timer: setTimeout(() => this.setState({ show: false }, () => setTimeout(() => this.setState({ visible: false }), 1000)), Number(duration) * 1000)
+                top: (notificationCount - 1) * 80,
+                timer: setTimeout(() => this.setState({ show: false }, () => setTimeout(() => this.setState({ visible: false }, () => unMountContainer(this.container)), 1000)), Number(duration) * 1000),
             })
         }
 
@@ -106,12 +112,12 @@ const Component = (props: NotificationProps, _type_: string) => {
                 position: 'right',
                 ...props,
             }
-            const { show = true, visible, _type_ = 'success'} = this.state
+            const { show = true, visible, _type_ = 'success', top } = this.state
             const { msg, position } = extendsProps
             return (
-                <div>
+                <div ref={container => this.container = container}>
                     {
-                        visible && <div className={'toastContainer ' + positionStyle(position, show).toastContainer}>
+                        visible && <div style={{transform: `translateY(${top}px)`}} className={'toastContainer ' + positionStyle(position, show).toastContainer}>
                             <div className={'toast ' + positionStyle(position, show).toast}>
                                 <i style={{ color: iconColor(_type_) }} className={'status iconfont ' + iconType(_type_)}></i>
                                 <span>{msg}</span>

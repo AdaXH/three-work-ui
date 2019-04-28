@@ -1,5 +1,5 @@
 import React from 'react';
-import { mountComponent } from '../WrapComponent/Index'
+import { mountComponent, unMountContainer } from '../WrapComponent/Index'
 import './index.css'
 
 export interface PopconfirmState {
@@ -53,6 +53,8 @@ const openPopconfirmContainer = (e: React.MouseEvent<HTMLDivElement, MouseEvent>
             ...props
         }
 
+        container: HTMLElement | null | undefined
+
         state: PopconfirmState = {
             visible: PopConfirm.extendsProps.visible || false,
             show: false,
@@ -60,7 +62,7 @@ const openPopconfirmContainer = (e: React.MouseEvent<HTMLDivElement, MouseEvent>
         }
 
         handleClick = (_type_: string) => {
-            this.setState({ show: false }, () => setTimeout(() => this.setState({ visible: false }), 300))
+            this.setState({ show: false }, () => setTimeout(() => this.setState({ visible: false }, () => _type_ === 'close' && unMountContainer(this.container)), 300))
             _type_ === 'close' ? 
                 PopConfirm.extendsProps.onCancel && PopConfirm.extendsProps.onCancel()
             : 
@@ -102,7 +104,7 @@ const openPopconfirmContainer = (e: React.MouseEvent<HTMLDivElement, MouseEvent>
         render() {
             const { visible } = this.state
             return (
-                <div>
+                <div ref={container => this.container = container}>
                     {visible && this.renderContainer()}
                 </div>
             )
