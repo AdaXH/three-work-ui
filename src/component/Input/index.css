@@ -1,0 +1,30 @@
+.TW_UI_inputContainer{
+    width:100%;
+}
+.TW_UI_input {
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid #d4d4d4;
+    padding: 0 10px;
+    transition: all .4s;
+    color: #353434;
+}
+.TW_UI_input:disabled {
+    background: #d4d4d4;
+    cursor: not-allowed;
+}
+.TW_UI_input:focus{
+    border: 1px solid #40a9ffbf;
+    box-shadow: 0 1px 4px #40a9ffbf;
+}
+.TW_UI_input_default{
+    height: 30px;
+    line-height: 32px;
+}
+.TW_UI_input_large{
+    height: 35px;
+}
+.TW_UI_input_small{
+    height: 25px;
+    line-height: 27px;
+}

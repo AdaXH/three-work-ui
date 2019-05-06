@@ -13,7 +13,7 @@ export interface NotificationState {
     show?: boolean,
     _type_?: string,
     timer?: any,
-    top?: number 
+    top?: number
     count?: number
 }
 
@@ -99,7 +99,7 @@ const Component = (props: NotificationProps, _type_: string) => {
             const notifications = document.querySelectorAll('.toastContainer')
             let notificationCount = 0
             notifications.forEach(item => {
-                if (item.getAttribute('data-position') === position) ++notificationCount
+                if (item.getAttribute('data-position') === position)++notificationCount
             })
             const prevePosition = notifications[notifications.length - 2] && notifications[notifications.length - 2].getAttribute('data-position')
             this.setState({
@@ -114,7 +114,7 @@ const Component = (props: NotificationProps, _type_: string) => {
             const notifications = Array.from(document.getElementsByClassName('toastContainer'))
             let notificationCount = 0
             notifications.forEach(item => {
-                if (item.children && item.children.length !== 0 && item.getAttribute('data-position') === position) ++notificationCount
+                if (item.children && item.children.length !== 0 && item.getAttribute('data-position') === position)++notificationCount
             })
             console.log(notificationCount)
             const prevePosition = notifications[notifications.length - 1] && notifications[notifications.length - 1].getAttribute('data-position')
