@@ -3,8 +3,7 @@ import * as PropTypes from 'prop-types'
 import './index.css'
 
 export interface InputState {
-    value?: string,
-    disabled?: boolean
+    value?: string
 }
 
 export interface InputProps extends InputState {
@@ -12,6 +11,7 @@ export interface InputProps extends InputState {
     onChange?: (value: string) => void,
     size?: 'default' | 'small' | 'large',
     type?: string,
+    disabled?: boolean,
     placeholder?: string
 }
 
@@ -19,9 +19,13 @@ class Input extends React.Component<InputProps, InputState> {
 
     constructor(props: InputProps) {
         super(props)
-        const value = props.value || props.defaultValue
-        const disabled = props.disabled || false
-        this.state = { value, disabled }
+        const value = props.value || props.defaultValue || ''
+        this.state = { value }
+    }
+
+    static getDerivedStateFromProps(nextProps: InputProps, preState: InputState) {
+        if ('value' in nextProps && nextProps.value !== preState.value) return { value: nextProps.value }
+        return null
     }
 
     static availableValues = {
@@ -37,7 +41,8 @@ class Input extends React.Component<InputProps, InputState> {
     static defaultProps: InputProps = {
         defaultValue: '',
         size: 'default',
-        type: 'text'
+        type: 'text',
+        disabled: false
     }
 
     input!: HTMLInputElement
@@ -59,11 +64,11 @@ class Input extends React.Component<InputProps, InputState> {
     }
 
     renderInput() {
-        const { size, type, placeholder = '' } = {
+        const { size, type, placeholder = '', disabled } = {
             ...Input.defaultProps,
             ...this.props
         }
-        const { value, disabled } = this.state
+        const { value } = this.state
         return (
             <input
                 type={type}
