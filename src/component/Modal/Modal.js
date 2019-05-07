@@ -13,7 +13,7 @@ const Component = (props, _type_) => {
         opacity: "1",
         top: "100px"
     }
-    class __Component__ extends React.PureComponent {
+    class DialogComponent extends React.PureComponent {
         state = {
             visible: false,
             show: false
@@ -83,7 +83,7 @@ const Component = (props, _type_) => {
             )
         }
     }
-    mountComponent(() => <__Component__ />, 'modal')
+    mountComponent(() => <DialogComponent />, 'modal')
 }
 const Modal = {}
 
