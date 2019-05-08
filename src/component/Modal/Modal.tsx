@@ -1,9 +1,22 @@
-import React from 'react';
+import * as React from 'react';
 import './index.css'
 import Button from '../Button/Button';
 import { mountComponent, unMountContainer } from '../WrapComponent/Index';
 
-const Component = (props, _type_) => {
+export interface ModalState {
+    visible?: boolean,
+    show?: boolean,
+    _type_?: string
+}
+
+export interface ModalProps extends ModalState{
+    title?: string,
+    width?: string,
+    content?: HTMLElement | null | undefined | string,
+    footer?: HTMLElement | null | undefined | string
+}
+
+const Component = (props: ModalProps, _type_: string) => {
     const basicStyle = {
         top: "300px",
         transform: "scale3d(0.8,0.8,0.8) translateX(-50%)"
@@ -13,12 +26,18 @@ const Component = (props, _type_) => {
         opacity: "1",
         top: "100px"
     }
-    class DialogComponent extends React.PureComponent {
-        state = {
-            visible: false,
-            show: false
+    class DialogComponent extends React.PureComponent<ModalProps, ModalState> {
+        static defaultProps = {
+            title: 'Basic Modal',
+            width: '500',
+            content: 'Content of the modal',
         }
-
+        state: ModalState = {
+            visible: false,
+            show: false,
+            _type_
+        }
+        container: HTMLElement | null | undefined
         componentDidMount() {
             this.setState({
                 visible: _type_ === 'show' ? true : (_type_ === 'hide') ? false : false,
@@ -40,9 +59,7 @@ const Component = (props, _type_) => {
         }
         render() {
             const extendsProps = {
-                title: 'Basic Modal',
-                width: '500',
-                content: 'Content of the modal',
+                ...DialogComponent.defaultProps,
                 ...props
             }
             const { title, width, content, footer } = extendsProps;
@@ -54,7 +71,7 @@ const Component = (props, _type_) => {
                         visible &&
                         <div className="TW_UI_modalContainer">
                             <div className="TW_UI_modalContainer_float" onClick={this.close}></div>
-                            <div className={"TW_UI_modalDetail"} style={{ width: isNaN(width) ? width : width + 'px', ...style }}>
+                            <div className={"TW_UI_modalDetail"} style={{ width: /px/.test(width) ? width : width + 'px', ...style }}>
                                 <div className="TW_UI_modalTitle">
                                     <b>{title}</b>
                                     <span
@@ -85,12 +102,15 @@ const Component = (props, _type_) => {
     }
     mountComponent(() => <DialogComponent />, 'modal')
 }
-const Modal = {}
+export interface Modal {
+    [key: string]: any
+}
+const Modal: Modal = {}
 
 const setInstance = () => {
     ['show', 'hide'].forEach(_type_ => {
         const key = _type_
-        Modal[_type_] = props => Component(props, key)
+        Modal[_type_] = (props: any) => Component(props, key)
     })
 }
 
