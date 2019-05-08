@@ -23,7 +23,7 @@ const Button = ({ type, disabled = false, onClick = () => undefined, children = 
       <div
         className='loadingButton componentButton'
       >
-        <span></span><b>Loading...</b>
+        <span></span><b>{children ? children : 'Loading...'}</b>
       </div>
     )
   }
