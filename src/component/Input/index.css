@@ -11,9 +11,15 @@
     width: 100%;
     display: block;
 }
+.TW_UI_input:hover {
+    border-color: #40a9ffbf;
+}
 .TW_UI_input:disabled {
     background: #d4d4d4;
     cursor: not-allowed;
+}
+.TW_UI_input:disabled:hover {
+    border-color: #d4d4d4;
 }
 .TW_UI_input:focus{
     border: 1px solid #40a9ffbf;

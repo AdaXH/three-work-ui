@@ -1,7 +1,7 @@
 import React from 'react'
 import CaseContainer from '../Case/Index'
 import Intrudction from '../ComponentIntruction/Index'
-import Input from './Input'
+import Select from './Select'
 
 const component = () => {
 
@@ -58,11 +58,11 @@ const component = () => {
             ]
         }
     }
+
+    const options = ['twui', 'three', 'work', 'ui']
+
     const CaseList = [
-        () => <Input type='text' placeholder='size-small' size='small' defaultValue='small' onChange={value => console.log(value)} />,
-        () => <Input type='text' placeholder='size-default' size='default' onChange={value => console.log(value)} />,
-        () => <Input type='text' placeholder='disabled' disabled={true} size='default' onChange={value => console.log(value)} />,
-        () => <Input type='text' placeholder='size-large' size='large' onChange={value => console.log(value)} />,
+        () => <Select options={options} />,
     ]
     return (
         <div>
@@ -73,8 +73,8 @@ const component = () => {
 }
 
 export default {
-    path: '/input',
+    path: '/select',
     component,
-    name: '输入框 - Input',
+    name: '选择器 - Select',
     author: 'Ada'
 }

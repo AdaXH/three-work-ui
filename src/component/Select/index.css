@@ -1,0 +1,35 @@
+.TW_UI_selectContainer{
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    border-radius: 4px;
+    border: 1px solid #d4d4d4;
+    padding: 0 10px;
+    transition: all .4s;
+    color: #353434;
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    outline: none;
+    font-size: 13px;
+    position: relative;
+}
+.TW_UI_selectContainer:hover {
+    border-color: #40a9ffbf;
+}
+.TW_UI_selectContainer:hover .TW_UI_selectionApi {
+    border-right-color:#40a9ffbf;
+    border-bottom-color: #40a9ffbf;
+}
+.TW_UI_selectionApi{
+    position: absolute;
+    width:7px;
+    transition: all .4s;
+    height: 7px;
+    border:1px solid transparent;
+    border-right-color:#353434ad;
+    border-bottom-color: #353434ad;
+    right:15px;
+    top: 10px;
+    transform: rotate(45deg);
+}
