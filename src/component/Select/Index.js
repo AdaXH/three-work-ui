@@ -59,10 +59,10 @@ const component = () => {
         }
     }
 
-    const options = ['twui', 'three', 'work', 'ui']
+    const options = ['twui', 'three', 'work', 'ui', 'three-wprk-ui']
 
     const CaseList = [
-        () => <Select options={options} />,
+        () => <Select options={options} defaultValue='ui' />,
     ]
     return (
         <div>

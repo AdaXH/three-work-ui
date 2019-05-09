@@ -14,12 +14,18 @@
     font-size: 13px;
     position: relative;
 }
-.TW_UI_selectContainer:hover {
+.TW_UI_selectContainerWrap {
+    position: relative;
+}
+.TW_UI_selectContainer:hover, .TW_UI_selectContainer:focus  {
     border-color: #40a9ffbf;
 }
 .TW_UI_selectContainer:hover .TW_UI_selectionApi {
     border-right-color:#40a9ffbf;
     border-bottom-color: #40a9ffbf;
+}
+.TW_UI_selectContainer:focus .TW_UI_selectionApi{
+    transform: rotate(225deg) translateX(-4px)
 }
 .TW_UI_selectionApi{
     position: absolute;
@@ -31,5 +37,27 @@
     border-bottom-color: #353434ad;
     right:15px;
     top: 10px;
+    transform-origin: center;
     transform: rotate(45deg);
+}
+.TW_UI_selectOptionsContainer {
+    min-width: 100%;
+    position: absolute;
+    margin-top: 8px;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    left: 0px;
+    -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.TW_UI_optionItemDefault {
+    padding: 0 10px;
+    white-space: nowrap;
+}
+.TW_UI_optionItemCurrent {
+    background: #40a9ff59;
+    color: #020202;
+    padding: 0 10px;
+    white-space: nowrap;
 }
