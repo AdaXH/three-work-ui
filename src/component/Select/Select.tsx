@@ -66,9 +66,13 @@ class Select extends React.Component<SelectProps, SelectState> {
         return null
     }
 
-    toggleVisible = (visible: boolean) => this.setState({ visible })
+    toggleVisible = (visible: boolean, e: React.FocusEvent<HTMLDivElement>) => {
+        e.stopPropagation && e.stopPropagation()
+        visible === false && this.setState({ visible })
+    }
 
-    setValue = (value: any, disabled: boolean) => {
+    setValue = (value: any, disabled: boolean, e: React.MouseEvent<HTMLDivElement>) => {
+        e.stopPropagation && e.stopPropagation()
         if (disabled || value === this.state.value) return
         const { options } = this.state
         for (let item of options)
@@ -79,6 +83,13 @@ class Select extends React.Component<SelectProps, SelectState> {
         })
     }
 
+    handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        e.stopPropagation && e.stopPropagation()
+        const { visible } = this.state
+        this.setState({ visible: !visible })
+        if (visible) this.selectOption.blur()
+    }
+
     renderOptions = () => {
         const { value, visible, options } = this.state
         const mapValueToLabel = (value: any) => {
@@ -87,12 +98,12 @@ class Select extends React.Component<SelectProps, SelectState> {
                     if (item.value === value) return item.label
             return ''
         }
-        const { style = {}, width, placeholder, defaultValue } = this.props
+        const { style = {}, width, placeholder } = this.props
         let widthValue = width ? (typeof width === 'number' ? width + 'px' : width) : '100%'
         const needPlaceHolder = placeholder && !this.props.value && !this.props.defaultValue && !value
         return (
             <div className='TW_UI_selectWrap' >
-                <div className='TW_UI_selectContainer' style={{ width: widthValue, ...style }} tabIndex={1} ref={(selectOption: HTMLDivElement) => this.selectOption = selectOption} onFocus={() => this.toggleVisible(true)} onBlur={() => this.toggleVisible(false)}>
+                <div className='TW_UI_selectContainer' style={{ width: widthValue, ...style }} onClick={e => this.handleClick(e)} tabIndex={1} ref={(selectOption: HTMLDivElement) => this.selectOption = selectOption} onFocus={(e) => this.toggleVisible(true, e)} onBlur={e => this.toggleVisible(false, e)}>
                     <span className='TW_UI_selectValue'>
                         {mapValueToLabel(value)}
                         {
@@ -104,7 +115,7 @@ class Select extends React.Component<SelectProps, SelectState> {
                         visible && <div className='TW_UI_selectOptionsContainer' style={{ width: widthValue, ...style }}>
                             {
                                 options && options.map(item => (
-                                    <div onClick={() => this.setValue(item.value, item.disabled || false)} className={`TW_UI_optionItem ${item.current ? 'TW_UI_optionItemCurrent' : 'TW_UI_optionItemDefault'} ${item.disabled ? 'TW_UI_optionItemDisabled' : 'TW_UI_optionItemDefault'}`} key={item.value}>{item.label}</div>
+                                    <div onClick={(e) => this.setValue(item.value, item.disabled || false, e)} className={`TW_UI_optionItem ${item.current ? 'TW_UI_optionItemCurrent' : 'TW_UI_optionItemDefault'} ${item.disabled ? 'TW_UI_optionItemDisabled' : 'TW_UI_optionItemDefault'}`} key={item.value}>{item.label}</div>
                                 ))
                             }
                         </div>

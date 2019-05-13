@@ -3,6 +3,7 @@ import Button from './component/Button/Button';
 import Modal from './component/Modal/Modal';
 import Popconfirm from './component/Popconfirm/Popconfirm.tsx';
 import Input from './component/Input/Input.tsx';
+import Select from './component/Select/Select.tsx'
 
 import setIcon from './config/iconConfig'
 
@@ -12,5 +13,6 @@ export {
     Button,
     Modal,
     Popconfirm,
-    Input
+    Input,
+    Select
 }
