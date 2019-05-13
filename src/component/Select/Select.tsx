@@ -69,7 +69,7 @@ class Select extends React.Component<SelectProps, SelectState> {
     toggleVisible = (visible: boolean) => this.setState({ visible })
 
     setValue = (value: any, disabled: boolean) => {
-        if (disabled) return
+        if (disabled || value === this.state.value) return
         const { options } = this.state
         for (let item of options)
             item.current = item.value === value
