@@ -7,41 +7,41 @@ const component = () => {
 
     const intrudction = {
         detail: `
-        import { Input } from 'three-work-ui'
-
-        <Input 
-            type='text' 
-            placeholder='size-small' 
-            size='small' 
-            defaultValue='12321' 
+        import { Select } from 'three-work-ui'
+        const options = [1, 2, 3] // [ { value: 1, label: '选项一' } ]
+        <Select  
+            options={options} 
+            placeholder='请选择'
+            value={1} 
+            defaultValue='12321'
             onChange={value => console.log(value)} 
         />`,
         apis: {
-            title: 'Input',
+            title: 'Select',
             values: [
                 {
-                    property: 'type',
-                    summary: 'Input类型',
-                    _type_: '"text" | "password" ',
-                    defaultValue: 'text'
-                },
-                {
-                    property: 'size',
-                    summary: 'Input大小',
-                    _type_: '"small" | "default" | "large"',
-                    defaultValue: 'default'
+                    property: 'options',
+                    summary: '选项，数组,item为{label: string, value: any, disabled: boolean} 或 string',
+                    _type_: '"Array<{} | string>" ',
+                    defaultValue: "['option1', 'option2', 'option3']"
                 },
                 {
                     property: 'value',
-                    summary: 'Input值',
+                    summary: 'Select值，会覆盖defaultValue',
                     _type_: 'string',
                     defaultValue: '无'
                 },
                 {
                     property: 'defaultValue',
-                    summary: 'Input默认值',
-                    _type_: 'string',
+                    summary: 'Select默认值',
+                    _type_: 'any',
                     defaultValue: '无'
+                },
+                {
+                    property: 'width',
+                    summary: 'Select宽度',
+                    _type_: 'number | string',
+                    defaultValue: '100%'
                 },
                 {
                     property: 'placeholder',
@@ -59,10 +59,26 @@ const component = () => {
         }
     }
 
-    const options = ['twui', 'three', 'work', 'ui', 'three-wprk-ui']
-
+    const options = ['twui', 'three', 'work', 'ui', 'three-wprk-ui-ver']
+    const options_ = [
+        {
+            label: 'option1',
+            value: 'option1',
+            disabled: true
+        },
+        {
+            label: 'option2',
+            value: 'option2',
+            disabled: false
+        },
+        {
+            label: 'option3',
+            value: 'option3',
+        }
+    ]
     const CaseList = [
-        () => <Select options={options} defaultValue='ui' />,
+        () => <div style={{ width: '280px' }}><Select placeholder='请选择' style={{ width: '280px' }} options={options} onChange={value => console.log('get value', value)} /></div>,
+        () => <Select options={options_} defaultValue='option2' onChange={value => console.log('get value', value)} />
     ]
     return (
         <div>
