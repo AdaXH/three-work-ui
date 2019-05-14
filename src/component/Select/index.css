@@ -10,13 +10,15 @@
     cursor: pointer;
     outline: none;
     font-size: 13px;
-    position: absolute;
+    /* position: absolute; */
+    background: white;
     min-width: 100px;
 }
 .TW_UI_selectValue {
     display: inline-block;
     padding-left:10px;
-    white-space: nowrap;
+    /* white-space: nowrap; */
+    color: #353434
 }
 .TW_UI_selectWrap {
     position: relative;
@@ -49,8 +51,9 @@
 }
 .TW_UI_selectOptionsContainer {
     min-width: 100%;
-    /* position: absolute; */
+    position: absolute;
     margin-top: 8px;
+    z-index: 1;
     background: white;
     border-radius: 4px;
     overflow: hidden;
@@ -58,6 +61,7 @@
     -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     opacity: 0;
+    will-change: opacity, transform;
     animation: TW_UI_selectShow .3s;
     animation-fill-mode: forwards;
 }
@@ -65,6 +69,7 @@
     transition: all .2s;
     white-space: nowrap;
     padding: 0 10px;
+    color: #353434;
 }
 .TW_UI_optionItem:hover{
     background: #40a9ff59;
@@ -84,11 +89,69 @@
 .TW_UI_selectPlaceholder {
     color: #9c9c9c;
 }
+.TW_UI_selectSize_small{
+    height: 25px;
+    line-height: 27px;
+}
+.TW_UI_selectSize_small .TW_UI_selectionApi {
+    top: 5px;
+}
+.TW_UI_selectSize_large {
+    height: 35px;
+    line-height: 37px;
+}
+.TW_UI_selectdisabled {
+    cursor: not-allowed;
+    background: #d4d4d4;
+}
+div.TW_UI_selectdisabled:hover, .TW_UI_selectdisabled:focus  {
+    border-color: transparent;
+}
+.TW_UI_selectdisabled:hover .TW_UI_selectionApi {
+    border-right-color:#353434ad;
+    border-bottom-color: #353434ad;
+} 
+.TW_UI_selectdisabled:focus .TW_UI_selectionApi{
+    transform: rotate(45deg)
+}
+.TW_UI_selectMutipleItem {
+    display: inline-block;
+    margin: 0 10px;
+    padding:0 10px;
+    height: 20px;
+    line-height: 20px;
+    border-radius:5px;
+    background: #dcdcdc;
+    animation: TW_UI_selectMutipleItem .3s;
+    animation-fill-mode: forwards;
+    font-size:13px;
+}
+.TW_UI_selectMutipleDelete i {
+    font-size: 13px;
+    color: #353434;
+    position: relative;
+    left: 5px;
+}
+.TW_UI_selectContainerMutiple {
+    height: auto !important;
+}
 @keyframes TW_UI_selectShow {
     from {
         opacity: 0;
+        transform: translateY(-30px)
     }
     to {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+@keyframes TW_UI_selectMutipleItem {
+    from {
+        opacity: 0;
+        transform: scale(0)
+    }
+    to {
+        transform: scale(1);        
         opacity: 1;
     }
 }
