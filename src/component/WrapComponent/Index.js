@@ -17,9 +17,4 @@ export const mountComponent = (component, id = 'TW_UI_common') => {
     ReactDOM.render(typeof (component) === 'function' ? component() : component, mountNode.children[mountNode.children.length - 1])
 }
 
-export const unMountContainer = container => {
-    container && container.parentNode &&
-        container.parentNode.parentNode &&
-        container.parentNode.parentNode.removeChild &&
-        container.parentNode.parentNode.removeChild(container.parentNode)
-}
+export const unMountContainer = container => container.parentNode.remove()
