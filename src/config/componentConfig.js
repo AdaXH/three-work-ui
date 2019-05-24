@@ -4,6 +4,7 @@ import Modal from '../component/Modal/Index';
 import Popconfirm from '../component/Popconfirm/Index';
 import Input from '../component/Input/Index';
 import Select from '../component/Select/Index';
+import Tab from '../component/Tab/Index';
 export default {
     config: [
         Button,
@@ -11,6 +12,7 @@ export default {
         Modal,
         Popconfirm,
         Input,
-        Select
+        Select,
+        Tab
     ]
 }
