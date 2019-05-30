@@ -13,6 +13,7 @@
     /* position: absolute; */
     background: white;
     min-width: 100px;
+    padding: 0 10px;
 }
 .TW_UI_selectValue {
     display: inline-block;
