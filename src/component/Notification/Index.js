@@ -30,7 +30,7 @@ const component = () => {
         })`,
         apis: {
             title: 'Notification',
-            values:[
+            values: [
                 {
                     property: 'Notification.api',
                     summary: '通知类型，可选值：success,warning,error,fail',
@@ -38,10 +38,10 @@ const component = () => {
                     defaultValue: '必选'
                 },
                 {
-                    property: 'api({ msg, position, duration, maxCount })',
-                    summary: '通知消息，通知位置，通知时长，最大通知数',
-                    _type_: 'String,String,Number',
-                    defaultValue: 'success, right, 3, 4'
+                    property: 'api({ msg, position, duration })',
+                    summary: '通知消息，通知位置，通知时长',
+                    _type_: 'String,String',
+                    defaultValue: 'success, right, 3'
                 }
             ]
         }

@@ -135,7 +135,6 @@ div.TW_UI_toastLeft{
 .toastContainer{
     position: fixed;
     min-width:10px;
-    height: 100px;
     z-index: 999;
     top:0;
 }

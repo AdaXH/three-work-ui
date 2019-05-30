@@ -1,3 +1,4 @@
+import ReactDOM from 'react-dom'
 import React from 'react'
 import { mountComponent, unMountContainer } from '../WrapComponent/Index'
 import './index.css'
@@ -73,57 +74,49 @@ const Component = (props: NotificationProps, _type_: string) => {
         }
     }
 
+    const createMountNode = () => {
+        const { position = 'right' } = props
+        let notificationContainer = document.getElementById('TW_UI_notification_container_' + position)
+        if (!notificationContainer) {
+            notificationContainer = document.createElement('div')
+            notificationContainer.id = 'TW_UI_notification_container_' + position
+            document.getElementsByTagName('body')[0].appendChild(notificationContainer)
+        }
+        const mountNode = document.createElement('div')
+        mountNode.className = 'TW_UI_notification_mount_node'
+        notificationContainer.appendChild(mountNode)
+        notificationContainer.className = 'toastContainer ' + positionStyle(position, true).toastContainer
+        const mounts = notificationContainer.getElementsByClassName('TW_UI_notification_mount_node')
+        ReactDOM.render(<__Component__ />, mounts[mounts.length - 1])
+    }
     class __Component__ extends React.Component<NotificationState> {
 
         static defaultProps = {
             msg: '这是一个通知',
             duration: 3.5,
-            position: 'right',
-            maxCount: 4
+            position: 'right'
         }
 
         state: NotificationState = {
             show: true,
             visible: true,
             timer: () => void 0,
-            _type_,
-            top: 0,
-            count: 0
+            _type_
         }
 
-        container: HTMLElement | null | undefined
+        container!: HTMLDivElement | HTMLElement
 
         componentDidMount() {
             clearTimeout(this.state.timer)
-            const { duration, position, maxCount } = { ...__Component__.defaultProps, ...props }
-            const notifications = document.querySelectorAll('.toastContainer')
-            let notificationCount = 0
-            notifications.forEach(item => {
-                if (item.getAttribute('data-position') === position)++notificationCount
-            })
-            const prevePosition = notifications[notifications.length - 2] && notifications[notifications.length - 2].getAttribute('data-position')
+            const { duration } = { ...__Component__.defaultProps, ...props }
             this.setState({
-                top: (!!prevePosition && position === prevePosition) ? (notificationCount - 1) : 0,
-                count: notifications.length,
-                timer: setTimeout(() => this.setState({ show: false }, () => setTimeout(() => this.setState({ visible: false }, () => unMountContainer(this.container)), 1000)), Number(duration) * 1000),
+                timer: setTimeout(() => this.setState({ show: false }, () => setTimeout(() => this.setState({ visible: false }, () => this.container && this.container.parentElement && this.container.parentElement.remove()), 1000)), Number(duration) * 1000),
             })
-        }
-
-        setTop = () => {
-            const { position } = { ...__Component__.defaultProps, ...props }
-            const notifications = Array.from(document.getElementsByClassName('toastContainer'))
-            let notificationCount = 0
-            notifications.forEach(item => {
-                if (item.children && item.children.length !== 0 && item.getAttribute('data-position') === position)++notificationCount
-            })
-            console.log(notificationCount)
-            const prevePosition = notifications[notifications.length - 1] && notifications[notifications.length - 1].getAttribute('data-position')
-            return (!!prevePosition && position === prevePosition) ? (notificationCount - 1) * 80 : 0
         }
 
         componentWillUnmount() {
-            this.setState = () => { return }
             clearTimeout(this.state.timer)
+            this.setState = () => { return }
         }
 
         render() {
@@ -133,24 +126,24 @@ const Component = (props: NotificationProps, _type_: string) => {
                 position: 'right',
                 ...props,
             }
-            const { show = true, visible, _type_ = 'success', top = 0, count = 0 } = this.state
-            const { msg, position, maxCount = 4 } = extendsProps
+            const { show = true, visible, _type_ = 'success' } = this.state
+            const { msg, position } = extendsProps
             return (
-                <div ref={container => this.container = container}>
+                <div ref={(ref: HTMLDivElement) => this.container = ref}>
                     {
-                        count <= maxCount && visible && <div data-position={position} style={{ transform: `translateY(${top && top * 80}px)` }} className={'toastContainer ' + positionStyle(position, show).toastContainer}>
+                        visible && <div data-position={position} >
                             <div className={'toast ' + positionStyle(position, show).toast}>
                                 <i style={{ color: iconColor(_type_) }} className={'status iconfont ' + iconType(_type_)}></i>
                                 <span>{msg}</span>
                             </div>
                         </div>
                     }
-                </div >
+                </div>
             )
         }
 
     }
-    mountComponent(() => <__Component__ />, 'notification')
+    createMountNode()
 }
 
 export default Notification

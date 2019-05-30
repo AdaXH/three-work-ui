@@ -1,4 +1,4 @@
-const url = '//at.alicdn.com/t/font_1146631_hgkx3d5c9hb.css'
+const url = '//at.alicdn.com/t/font_1146631_2i11x2hx8ii.css'
 
 
 export default () => {
