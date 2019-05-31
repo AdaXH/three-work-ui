@@ -1,3 +1,9 @@
+/*
+ * @Author: Ada 
+ * @Date: 2019-05-21 17:04:05 
+ * @Last Modified by: Ada - 向晗
+ * @Last Modified time: 2019-05-31 10:57:37
+ */
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
 
@@ -46,6 +52,8 @@ class Select extends React.Component<SelectProps, SelectState> {
     }
 
     selectOption!: HTMLDivElement
+
+    refForWidth!: HTMLDivElement
 
     static propTypes = {
         options: PropTypes.array.isRequired,
@@ -123,9 +131,9 @@ class Select extends React.Component<SelectProps, SelectState> {
         const { style = {}, width, placeholder, disabled = false, size = 'default', mutiple = false } = this.props
         let widthValue = width ? (typeof width === 'number' ? width + 'px' : width) : '100%'
         const needPlaceHolder = placeholder && (!value || (value.length && value.length === 0))
-
+        const initWidth = this.refForWidth && this.refForWidth.offsetWidth
         return (
-            <div className='TW_UI_selectWrap' style={{ height: `${size === 'small' ? '27px' : (size === 'default' ? '32px' : '35px')}` }}>
+            <div className='TW_UI_selectWrap' style={{ height: `${size === 'small' ? '27px' : (size === 'default' ? '32px' : '35px')}` }} ref={(ref: HTMLDivElement) => this.refForWidth = ref}>
                 <div className={`${mutiple && 'TW_UI_selectContainerMutiple'} TW_UI_selectContainer ${disabled ? 'TW_UI_selectdisabled' : 'TW_UI_selectDefault'} TW_UI_selectSize_${size}`}
                     style={{ width: widthValue, ...style }}
                     onClick={e => !disabled && this.handleClick(e)} tabIndex={1}
@@ -149,14 +157,12 @@ class Select extends React.Component<SelectProps, SelectState> {
                     </span>
                     <div className='TW_UI_selectionApi' />
                     {
-                        visible && <div className='TW_UI_selectOptionsContainer' style={{ width: widthValue, ...style }}>
+                        visible && <div className='TW_UI_selectOptionsContainer' style={{ ...style, width: (initWidth + 20) + 'px' }} >
                             {
                                 options && options.map(item => (
                                     <div
                                         onClick={(e) => this.setValue(item.value, item.disabled || false, e)}
-                                        className={`TW_UI_optionItem 
-                                            ${(item.current || mutiple && (value && value.includes(item.value))) ? 'TW_UI_optionItemCurrent' : 'TW_UI_optionItemDefault'} 
-                                            ${item.disabled ? 'TW_UI_optionItemDisabled' : 'TW_UI_optionItemDefault'}`
+                                        className={`TW_UI_optionItem ${(item.current || mutiple && (value && value.includes(item.value))) ? 'TW_UI_optionItemCurrent' : 'TW_UI_optionItemDefault'} ${item.disabled ? 'TW_UI_optionItemDisabled' : 'TW_UI_optionItemDefault'}`
                                         }
                                         key={item.value}>{item.label}</div>
                                 ))

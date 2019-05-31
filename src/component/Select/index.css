@@ -14,10 +14,10 @@
     background: white;
     min-width: 100px;
     padding: 0 10px;
+    text-align: left;
 }
 .TW_UI_selectValue {
     display: inline-block;
-    padding-left:10px;
     /* white-space: nowrap; */
     color: #353434
 }
@@ -45,7 +45,7 @@
     border:1px solid transparent;
     border-right-color:#353434ad;
     border-bottom-color: #353434ad;
-    right:15px;
+    right:-8px;
     top: 10px;
     transform-origin: center;
     transform: rotate(45deg);
@@ -71,6 +71,7 @@
     white-space: nowrap;
     padding: 0 10px;
     color: #353434;
+    width: 100%;
 }
 .TW_UI_optionItem:hover{
     background: #40a9ff59;
