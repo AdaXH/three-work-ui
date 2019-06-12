@@ -54,7 +54,7 @@
     flex: 1;
     padding: 10px;
 }
-.TW_UI_apiHeaher div:nth-of-type(2) {
+.TW_UI_apiHeaher div:nth-of-type(2), .TW_UI_apiHeaher div:nth-of-type(4)  {
     width: 500px;
     flex: none;
 }
@@ -65,7 +65,7 @@
 .TW_UI_apiItem div {
     flex: 1;
 }
-.TW_UI_apiItem div:nth-of-type(2) {
+.TW_UI_apiItem div:nth-of-type(2),.TW_UI_apiItem div:nth-of-type(4)  {
     width: 500px;
     flex: none;
 }

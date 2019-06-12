@@ -26,6 +26,9 @@ a .TW_UI_author {
   line-height: 25px;
   /* color: #0d1a26; */
 }
+div.container{
+  width: auto;
+}
 a:link{
   color: #40a9ff;
 }
