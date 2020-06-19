@@ -7,14 +7,5 @@ import Select from '../component/Select/Index';
 import Tab from '../component/Tab/Index';
 import Github from '../component/Github/Index';
 export default {
-    config: [
-        Github,
-        Button,
-        Notification,
-        Modal,
-        Popconfirm,
-        Input,
-        Select,
-        Tab
-    ]
-}
+  config: [Github, Button, Notification, Modal, Popconfirm, Input, Select, Tab],
+};
