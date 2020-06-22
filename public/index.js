@@ -13,7 +13,7 @@ const App = props => {
   window.onload = () => {
     setIcon();
   };
-  return <div className="componentContainer">{target('select')()}</div>;
+  return <div className="componentContainer">{target('tabs')()}</div>;
 };
 
 ReactDOM.render(<App />, document.getElementById('root'));

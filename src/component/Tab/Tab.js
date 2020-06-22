@@ -1,18 +1,12 @@
-/*
- * @Author: Ada
- * @Date: 2019-05-21 17:04:05
- * @Last Modified by: Ada - 向晗
- * @Last Modified time: 2020-06-19 14:50:27
- */
-import * as React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useSetState } from 'react-use';
 import Panel from './Panel';
-import styles from './index.less';
+import './index.less';
 
-class Tab extends React.Component<TabProps, TabState> {
-  constructor(props) {
-    super(props);
+const Tab = props => {
+  const [state, setState] = useSetState(() => {
     const activeKey = props.activeKey || props.defaultActiveKey || undefined;
-    const { children } = this.props;
+    const { children } = props;
     const tabs = [];
     children instanceof Array &&
       children.forEach(item => {
@@ -25,17 +19,39 @@ class Tab extends React.Component<TabProps, TabState> {
           });
         }
       });
-    this.state = { activeKey, tabs, currentTab: false };
+    return { activeKey, tabs, currentTab: false };
+  });
+  const ref = useRef(null);
+  useEffect(
+    () => {
+      setState({ activeKey: props.activeKey });
+    },
+    [props.activeKey]
+  );
+  const { tabs, activeKey, currentTab } = state;
+  let style = {};
+  if (currentTab) {
+    style = {
+      transform: `translate3d(${currentTab.left}, 0, 0)`,
+      width: currentTab.width,
+    };
   }
-  static Panel = Panel;
-  tabContainer;
-
-  saveCurrentTab = tabContainer => {
+  const handleClickTab = async activeKey => {
+    props.onChange && props.onChange(activeKey);
+    await setState({ activeKey });
+  };
+  useEffect(
+    () => {
+      saveCurrentTab(ref.current);
+    },
+    [activeKey]
+  );
+  const saveCurrentTab = tabContainer => {
     if (tabContainer) {
       for (let i = 0, len = tabContainer.children.length; i < len; i++) {
-        let item: any = tabContainer.children[i];
+        const item = tabContainer.children[i];
         if (/TW_UI_tabCurrent_true/.test(item.className)) {
-          this.setState({
+          setState({
             currentTab: {
               left: item.offsetLeft + 'px',
               width: item.clientWidth + 'px',
@@ -47,43 +63,16 @@ class Tab extends React.Component<TabProps, TabState> {
       }
     }
   };
-
-  componentDidMount() {
-    !!this.tabContainer && this.saveCurrentTab(this.tabContainer);
-  }
-
-  handleClickTab = activeKey => {
-    this.props.onChange && this.props.onChange(activeKey);
-    this.setState({ activeKey }, () => this.saveCurrentTab(this.tabContainer));
-  };
-
-  static getDerivedStateFromProps(nextProps, preState) {
-    if ('activeKey' in nextProps && preState.activeKey !== nextProps.activeKey)
-      return { activeKey: nextProps.activeKey };
-    return null;
-  }
-
-  renderHeader = () => {
-    const { tabs, activeKey, currentTab } = this.state;
-    let style = {};
-    if (currentTab instanceof Object) {
-      style = {
-        transform: `translate3d(${currentTab.left}, 0, 0)`,
-        width: currentTab.width,
-      };
-    }
-    return (
-      <div
-        className="TW_UI_tabHeaderContainer"
-        ref={ref => (this.tabContainer = ref)}
-      >
+  return (
+    <div>
+      <div className="TW_UI_tabHeaderContainer" ref={ref}>
         {tabs.length !== 0 &&
           tabs.map((item, index) => (
             <div
               onClick={() =>
                 !item.disabled &&
                 item.key !== activeKey &&
-                this.handleClickTab(item.key)
+                handleClickTab(item.key)
               }
               className={`TW_UI_tabItem TW_UI_tabCurrent_${item.key ===
                 activeKey} ${
@@ -97,27 +86,9 @@ class Tab extends React.Component<TabProps, TabState> {
           ))}
         <div className="TW_UI_tabAnchor" style={{ ...style }} />
       </div>
-    );
-  };
-
-  rendderPanel = () => {
-    const { tabs, currentTab } = this.state;
-    return (
-      <Tab.Panel
-        tabs={tabs}
-        activePanel={currentTab instanceof Object && currentTab.index}
-      />
-    );
-  };
-
-  render() {
-    return (
-      <div>
-        {this.renderHeader()}
-        {this.rendderPanel()}
-      </div>
-    );
-  }
-}
-
+      <Tab.Panel tabs={tabs} activePanel={currentTab && currentTab.index} />
+    </div>
+  );
+};
+Tab.Panel = Panel;
 export default Tab;

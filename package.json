@@ -43,6 +43,7 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "^2.1.8",
     "react-use": "^15.2.5",
+    "source-map-loader": "^1.0.0",
     "ts-lint": "^4.5.1",
     "ts-loader": "^5.4.3",
     "typescript": "^3.4.5",

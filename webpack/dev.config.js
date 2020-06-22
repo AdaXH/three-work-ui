@@ -14,12 +14,12 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: 'babel-loader',
+        use: ['source-map-loader', 'babel-loader'],
         exclude: /node_modules/,
       },
       {
         test: /\.ts?$/,
-        use: 'ts-loader',
+        use: ['source-map-loader', 'ts-loader'],
         exclude: /node_modules/,
       },
       {
