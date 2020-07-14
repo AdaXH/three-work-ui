@@ -1,63 +1,63 @@
-.TW_UI_modalContainer{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 9999;
+.TW_UI_modalContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999;
 }
-.TW_UI_modalContainer .TW_UI_modalContainer_float{
-    position: absolute;
-    top: 0;
-    height: 0;
-    background-color: #565353;
-    opacity: .6;
-    width: 100%;
-    height: 100%;
+.TW_UI_modalContainer .TW_UI_modalContainer_float {
+  position: absolute;
+  top: 0;
+  height: 0;
+  background-color: #565353;
+  opacity: 0.6;
+  width: 100%;
+  height: 100%;
 }
-.TW_UI_modalDetail{
-    position: absolute;
-    width: 500px;
-    left: 50%;
-    background-color: #fff;
-    transform-style: preserve-3d;
-    transform: scale3d(0.2, 0.2, 0.2);
-    opacity: 0;
-    transition: all .3s;
+.TW_UI_modalDetail {
+  position: absolute;
+  width: 500px;
+  left: 50%;
+  background-color: #fff;
+  transform-style: preserve-3d;
+  transform: scale3d(0.2, 0.2, 0.2);
+  opacity: 0;
+  transition: all 0.3s;
 }
-.TW_UI_modalDetail .TW_UI_modalTitle{
-    display: flex;
-    justify-content: space-between;
-    height: 22px;
-    padding: 16px 22px;
+.TW_UI_modalDetail .TW_UI_modalTitle {
+  display: flex;
+  justify-content: space-between;
+  height: 22px;
+  padding: 16px 22px;
 }
-.TW_UI_modalDetail .TW_UI_modalTitle b{
-   font-weight: 500;
-   color: rgba(0,0,0,0.85);
-   font-size: 16px;
-   line-height: 22px;
+.TW_UI_modalDetail .TW_UI_modalTitle b {
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 16px;
+  line-height: 22px;
 }
-.TW_UI_modalDetail .TW_UI_modalTitle .icon-quxiao{
-    font-size: 20px;
-    color: #afaaaa;
+.TW_UI_modalDetail .TW_UI_modalTitle .icon-quxiao {
+  font-size: 20px;
+  color: #afaaaa;
 }
-.TW_UI_modalDetail .TW_UI_modalTitle .icon-quxiao:hover{
-    color: #000000;
+.TW_UI_modalDetail .TW_UI_modalTitle .icon-quxiao:hover {
+  color: #000000;
 }
-.TW_UI_modalDetail .TW_UI_modalContent{
-    border-top: 1px solid #e8e8e8;
-    border-bottom: 1px solid #e8e8e8;
-    padding: 24px;
-    font-size: 14px;
-    word-wrap: break-word;
-    line-height: 1.5;
-    color: #565353;
+.TW_UI_modalDetail .TW_UI_modalContent {
+  border-top: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
+  padding: 24px;
+  font-size: 14px;
+  word-wrap: break-word;
+  line-height: 1.5;
+  color: #565353;
 }
-.TW_UI_modalDetail .TW_UI_modalFooter{
-    padding: 10px 16px;
-    display: flex;
-    justify-content: flex-end;
+.TW_UI_modalDetail .TW_UI_modalFooter {
+  padding: 10px 16px;
+  display: flex;
+  justify-content: flex-end;
 }
-.TW_UI_modalDetail .TW_UI_modalFooter :nth-of-type(1){
-    margin-right: 10px;
+.TW_UI_modalDetail .TW_UI_modalFooter :nth-of-type(1) {
+  margin-right: 10px;
 }

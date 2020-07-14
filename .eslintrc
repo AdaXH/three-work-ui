@@ -1,0 +1,28 @@
+{
+  "extends": ["umi", "prettier"],
+  "rules": {
+    "quotes": "off",
+    "semi": 2,
+    "jsx-a11y/label-has-for": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+    "react/no-array-index-key": 0,
+    "react/self-closing-comp": 1,
+    "import/named": 0,
+    "no-bitwise": 0,
+    "no-continue": 0,
+    "no-restricted-syntax": 0,
+    "react/jsx-no-comment-textnodes": 2,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": 1,
+    "no-param-reassign": 2,
+    "spaced-comment": 2,
+    "no-sparse-arrays": 2
+    // "prettier/prettier": [
+    //   "error",
+    //   {
+    //     "printWidth": 200,
+    //     "semi": true
+    //   }
+    // ]
+  }
+}

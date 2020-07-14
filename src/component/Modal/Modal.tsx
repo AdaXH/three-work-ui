@@ -48,14 +48,19 @@ const Component = (props: ModalProps, _type_: string) => {
                 }, 0)
             })
         }
-        close = () => {
-            this.setState({
-                show: false,
-            }, () => {
-                setTimeout(() => {
-                    this.setState({ visible: false }, () => unMountContainer(this.container))
-                }, 300)
-            })
+      );
+    }
+    close = () => {
+      this.setState(
+        {
+          show: false,
+        },
+        () => {
+          setTimeout(() => {
+            this.setState({ visible: false }, () =>
+              unMountContainer(this.container)
+            );
+          }, 300);
         }
         render() {
             const extendsProps = {
@@ -97,8 +102,20 @@ const Component = (props: ModalProps, _type_: string) => {
                         </div>
                     }
                 </div>
-            )
-        }
+                <div className="TW_UI_modalContent">{content}</div>
+                {footer ? (
+                  <div className="TW_UI_modalFooter">{footer}</div>
+                ) : (
+                  <div className="TW_UI_modalFooter">
+                    <Button onClick={this.close}>取消</Button>
+                    <Button type="primary">确定</Button>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      );
     }
     mountComponent(() => <DialogComponent />, 'modal')
 }
@@ -114,5 +131,5 @@ const setInstance = () => {
     })
 }
 
-setInstance()
+setInstance();
 export default Modal;

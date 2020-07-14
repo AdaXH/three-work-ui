@@ -1,0 +1,53 @@
+.container {
+  width: 700px;
+  margin: 10px auto;
+  position: relative;
+}
+.container .logo {
+  margin-left: 70px;
+  position: relative;
+  width: 70px;
+  height: 70px;
+}
+.container h1 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  margin-left: 50px;
+  color: #0d1a26;
+  font-weight: 500;
+  font-size: 30px;
+  font-family: Avenir, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue',
+    Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', sans-serif;
+  line-height: 38px;
+}
+.container .logo i {
+  color: #40a9ff;
+  font-size: 70px;
+  position: absolute;
+}
+.tw_ui {
+  position: absolute;
+  bottom: -5px;
+  color: #40a9ff;
+  left: -17px;
+  font-weight: bold;
+}
+.TW_UI_detail {
+  margin-top: 60px;
+  padding-left: 54px;
+  white-space: pre-wrap;
+  line-height: 30px;
+  color: #314659;
+  font-size: 14px;
+  line-height: 2;
+}
+.TW_UI_github {
+  margin: 10px 0 0 54px;
+  color: #40a9ff;
+  display: block;
+}
+.TW_UI_github span {
+  padding-left: 10px;
+}

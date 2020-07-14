@@ -33,11 +33,12 @@ const Button = (props: ButtonProps) => {
     default: buttonType = 'defaultButton';
   }
   if (disabled) {
+    return <div className="disableButton componentButton">{children}</div>;
+  } else if (loading) {
     return (
-      <div
-        className='disableButton componentButton'
-      >
-        {children}
+      <div className="loadingButton componentButton">
+        <span />
+        <b>Loading...</b>
       </div>
     )
   }else if (loading){
@@ -50,13 +51,10 @@ const Button = (props: ButtonProps) => {
     )
   }
   return (
-    <div
-      className={`${buttonType} componentButton`}
-      onClick={onClick}
-    >
+    <div className={`${buttonType} componentButton`} onClick={onClick}>
       {children}
     </div>
-  )
-}
+  );
+};
 
 export default Button;
