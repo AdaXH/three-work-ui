@@ -14,7 +14,16 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: ['source-map-loader', 'babel-loader'],
+        use: [
+          'source-map-loader', 
+          'babel-loader', 
+          {
+            loader: 'eslint-loader',
+            options: {
+              fix: true
+            }
+          }
+        ],
         exclude: /node_modules/,
       },
       {
@@ -41,10 +50,16 @@ module.exports = {
   plugins: [
     new htmlWebpackPlugin({
       template: './public/index.html',
+      inject: true,
+      minify: {
+        minifyCSS: true,
+        removeComments: true,
+        crashWhitespace: true
+      }
     }),
     new StyleLintPlugin({
       context: 'src',
-      configFile: path.resolve(__dirname, '../.stylelintrc'),
+      configFile: path.resolve(__dirname, '../.stylelintrc.js'),
       files: '**/*.less',
       failOnError: false,
       quiet: true,
@@ -54,10 +69,10 @@ module.exports = {
   devServer: {
     contentBase: './src',
     port: 8000,
-    // host: '0.0.0.0',
     overlay: {
       errors: true,
     },
-    hot: false, // 只渲染一个组件
+    open: true,
+    hot: true
   },
 };
