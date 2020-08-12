@@ -5,7 +5,7 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 module.exports = {
   mode: 'development',
   // entry: './src/index.js',
-  entry: ['babel-polyfill', './public/index.js'],
+  entry: ['babel-polyfill', './src/App.js'],
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, '../lib'),
@@ -53,7 +53,7 @@ module.exports = {
   ],
   devServer: {
     contentBase: './src',
-    port: 8000,
+    port: 8001,
     // host: '0.0.0.0',
     overlay: {
       errors: true,
