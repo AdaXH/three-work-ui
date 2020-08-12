@@ -1,10 +1,10 @@
-import Notification from './component/Notification/Notification.tsx';
+import Notification from './component/Notification/Notification';
 import Button from './component/Button/Button';
 import Modal from './component/Modal/Modal';
-import Popconfirm from './component/Popconfirm/Popconfirm.tsx';
-import Input from './component/Input/Input.tsx';
-import Select from './component/Select/Select.tsx';
-import Tab from './component/Tab/Tab.js';
+import Popconfirm from './component/Popconfirm/Popconfirm';
+import Input from './component/Input/Input';
+import Select from './component/Select/Select';
+import Tab from './component/Tab/Tab';
 
 import setIcon from './config/iconConfig';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-// import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
 import Components from '@/config/componentConfig';
 import {
   BrowserRouter as Router,
@@ -11,7 +11,7 @@ import {
 import setIcon from '@/config/iconConfig';
 import './App.css';
 
-export default props => {
+const App = (props) => {
   window.onload = () => {
     setIcon();
   };
@@ -20,7 +20,7 @@ export default props => {
       <Router>
         <span style={{ display: 'flex' }}>
           <div className="componentList">
-            {Components.config.map(item => (
+            {Components.config.map((item) => (
               <NavLink to={item.path} key={item.name}>
                 {item.name}
                 <span className="TW_UI_author">@ {item.author}</span>
@@ -28,7 +28,7 @@ export default props => {
             ))}
           </div>
           <Switch>
-            {Components.config.map(item => (
+            {Components.config.map((item) => (
               <Route
                 key={item.name}
                 className="__componentDetail"
@@ -46,4 +46,4 @@ export default props => {
   );
 };
 
-// ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));

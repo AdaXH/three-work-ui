@@ -5,7 +5,7 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 module.exports = {
   mode: 'development',
   // entry: './src/index.js',
-  entry: ['babel-polyfill', './public/index.js'],
+  entry: ['babel-polyfill', './src/App.js'],
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, '../lib'),
@@ -59,5 +59,6 @@ module.exports = {
       errors: true,
     },
     hot: false, // 只渲染一个组件
+    historyApiFallback: true,
   },
 };

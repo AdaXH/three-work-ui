@@ -1,6 +1,6 @@
 {
   "name": "three-work-ui",
-  "version": "0.0.17",
+  "version": "0.1.0",
   "description": "",
   "files": [
     "lib"
@@ -9,8 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --env.NODE_ENV=production",
-    "dev": "react-scripts start",
-    "webpack-dev": "webpack-dev-server",
+    "dev": "webpack-dev-server",
     "buildPage": "react-scripts build",
     "lint": "cd src && eslint --ext .js src test",
     "lint-fix": "cd src && eslint --fix --ext .js .",
