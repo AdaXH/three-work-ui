@@ -1,36 +1,3 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 .componentContainer{
   margin-top: 20px;
   display: flex;
@@ -50,6 +17,17 @@
     padding: 10px 20px;
     border-right: 3px solid transparent;
     transition: all .2s;
+    position: relative;
+}
+a .TW_UI_author {
+  position: absolute;
+  right:5px;
+  font-size: 13px;
+  line-height: 25px;
+  /* color: #0d1a26; */
+}
+div.container{
+  width: auto;
 }
 a:link{
   color: #40a9ff;
@@ -68,6 +46,9 @@ a.active{
   background: #ff4d4f8f;
   color:white;
   border-right: 3px solid #ff4d4f;
+}
+a{
+  text-decoration: none;
 }
 .__componentDetail{
   flex: 1;

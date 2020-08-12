@@ -4,4 +4,4 @@ module.exports = (env) => {
     } else {
         return require('./webpack/dev.config.js');
     }
-}
+};
